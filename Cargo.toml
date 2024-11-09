@@ -6,11 +6,17 @@ edition = "2021"
 include = ["LICENSE-APACHE", "LICENSE-MIT", "**/*.rs", "Cargo.toml"]
 rust-version = "1.76"
 
+build = "build.rs"
+
 [package.metadata.docs.rs]
 all-features = true
 targets = ["x86_64-unknown-linux-gnu", "wasm32-unknown-unknown"]
 
 [dependencies]
+async-trait = "0.1.73"
+bytes = "1.5"
+btleplug = "0.11"
+futures = "0.3.28"
 egui = "0.29"
 eframe = { version = "0.29", default-features = false, features = [
     "accesskit",     # Make egui compatible with screen readers. NOTE: adds a lot of dependencies.
@@ -19,9 +25,12 @@ eframe = { version = "0.29", default-features = false, features = [
     "persistence",   # Enable restoring app state when restarting the app.
 ] }
 log = "0.4"
-
+# pretty_env_logger = "0.5"
+prost = "0.12"
 # You only need serde if you want app persistence:
 serde = { version = "1", features = ["derive"] }
+tokio = { version = "1.36", features = ["rt", "macros", "rt-multi-thread"] }
+uuid = "1.11.0"
 
 # native:
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
@@ -49,3 +58,10 @@ opt-level = 2
 # If you fork https://github.com/emilk/egui you can test with:
 # egui = { path = "../egui/crates/egui" }
 # eframe = { path = "../egui/crates/eframe" }
+
+
+[build-dependencies]
+cfg-if = { version = "1" }
+env_logger = { version = "0.11", default-features = false }
+prost-build = { version = "0.12" }
+protobuf = { version = "3.4" }

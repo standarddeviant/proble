@@ -1,10 +1,21 @@
 #![warn(clippy::all, rust_2018_idioms)]
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
+mod transport;
+use transport::{scan_for_peripherals, unwrap_adapter};
+
 // When compiling natively:
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
+
+    // TODO: move this logic to async runtime in another thread
+    // TODO: figure out good protobuf message layer b/w...
+    // 1. GUI (currently eframe [sync])
+    // 2. Bluetooth (currently btleplug [async])
+
+    // let adapter = transport::unwrap_adapter().await;
+    // let periphs = transport::scan_for_peripherals(&adapter);
 
     let native_options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()

@@ -1,0 +1,69 @@
+
+syntax = "proto3";
+package proble.messages;
+
+
+// [DART-SIGNAL]
+// message SmallText { string text = 1; }
+
+// [RUST-SIGNAL]
+// message SmallNumber { int32 number = 1; }
+
+// [DART-SIGNAL]
+message StartScan { string filter = 1; }
+// [RUST-SIGNAL]
+message ScanList { repeated string periph = 1; }
+
+// [DART-SIGNAL]
+message ConnectAttempt { int32 index = 1; string periph = 2; }
+// [RUST-SIGNAL]
+message ConnectSuccess { int32 index = 1; string periph = 2; }
+
+// [DART-SIGNAL]
+message PayloadToDevice { string payload = 1; }
+// [DART-SIGNAL]
+message PayloadFromDevice { string payload = 1; }
+
+// [DART-SIGNAL]
+message DisconnectAttempt { int32 index = 1; string periph = 2; }
+// [RUST-SIGNAL]
+message DisconnectSuccess { int32 index = 1; string periph = 2; }
+
+
+
+// message Uuid128Tuple {
+//   repeated uint64 values = 1;
+// }
+//
+// message SoftwareVersion {
+//   int32 major = 1;
+//   int32 minor = 2;
+//   int32 patch = 3;
+//   string url  = 4;
+//   string hash = 5;
+// }
+//
+// message DefaultGattMessage {
+//   oneof m {
+//     SoftwareVersion swver = 1;
+//     int32 testid = 2;
+//   }
+// }
+//
+// message TelemetryToPeripheral { 
+//   SoftwareVersion nrfx = 1;
+// }
+//
+// message DataChar {
+//   message ToPeriphal {
+//     int32 id = 1;
+//     string desc = 2;
+//   }
+//   message ToCentral {
+//     int32 id = 1;
+//     string desc = 2;
+//   }
+//   ToPeriphal toP = 1;
+//   ToCentral toC = 2;
+// }
+//

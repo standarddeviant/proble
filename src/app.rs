@@ -7,6 +7,15 @@ pub struct TemplateApp {
 
     #[serde(skip)] // This how you opt-out of serialization of a field
     value: f32,
+
+    // Example stuff:
+    last_address: String,
+
+    // Example stuff:
+    last_name: String,
+
+    #[serde(skip)] // This how you opt-out of serialization of a field
+    pstrings: Vec<String>,
 }
 
 impl Default for TemplateApp {
@@ -14,7 +23,10 @@ impl Default for TemplateApp {
         Self {
             // Example stuff:
             label: "Hello World!".to_owned(),
+            last_address: "".to_owned(),
+            last_name: "".to_owned(),
             value: 2.7,
+            pstrings: [].into(),
         }
     }
 }
